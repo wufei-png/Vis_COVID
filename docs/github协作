@@ -1,0 +1,6 @@
+fork 
+git clone 到本地
+checkout -b 分支
+写代码
+写完后没问题git push
+pull request
