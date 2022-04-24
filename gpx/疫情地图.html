@@ -1,0 +1,196 @@
+<!DOCTYPE html> 
+<html>
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>Hello, World</title> 
+<style type="text/css"> 
+html{height:100%} 
+body{height:100%;margin:0px;padding:0px} 
+#container{height:90%} 
+</style> 
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=kMgWPSjDNHzO5tSNGjs9Hdfzmg8ejt4G">
+</script>
+</head>
+  
+<body> 
+    <div id="container"></div>
+    <script type="text/javascript">
+
+
+        
+        //定义地图
+        var map = new BMapGL.Map("container"); 
+        //禁止旋转与角度
+        map.enableRotate=true
+        map.enableTilt=true
+        // 创建地图实例 
+        var point = new BMapGL.Point(121.5, 31.2);
+        // 创建点坐标 
+        map.centerAndZoom(point, 12);
+        map.enableScrollWheelZoom(true);  
+        map.setMinZoom(4);
+        map.setMaxZoom(20);
+
+        var scaleCtrl = new BMapGL.ScaleControl();  // 添加比例尺控件
+        map.addControl(scaleCtrl);
+        var zoomCtrl = new BMapGL.ZoomControl();  // 添加缩放控件
+        map.addControl(zoomCtrl);
+        
+        var allRows;
+        var data;
+        var allpoints=[]
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                data = this.responseText;
+                
+                allRows = data.split("\n");
+                
+                for(var rows=0;rows<allRows.length;++rows){          
+                    var myGeo = new BMapGL.Geocoder();
+                    // 将地址解析结果显示在地图上
+                    var place=allRows[rows];
+                    myGeo.getPoint(place, function(point,place){
+                        if(point){
+                            allpoints.push(point);
+                            var myIcon = new BMapGL.Icon("markers.png", new BMapGL.Size(23, 25), {    
+                                anchor: new BMapGL.Size(10, 25),     
+                                imageOffset: new BMapGL.Size(0, 0 - 5*25)   // 设置图片偏移   
+                            });     
+                            var themarker=new BMapGL.Marker(point, {title: place["address"]}, {icon: myIcon})
+                            themarker.disableMassClear();
+                            map.addOverlay(themarker);
+                        }
+                        else{
+                            alert('您选择的地址没有解析到结果！');
+                        }
+                    }, '上海市')
+                }
+            }
+        }
+        xhttp.open("GET", "上海每日新增病例位置.txt", true);
+        xhttp.send();
+
+
+
+        //定义一个控件类
+        function backControl() {
+            this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+            this.defaultOffset = new BMapGL.Size(20, 20)
+        }
+        //通过JavaScript的prototype属性继承于BMap.Control
+        backControl.prototype = new BMapGL.Control();
+
+        //自定义控件必须实现自己的initialize方法，并且将控件的DOM元素返回
+        //在本方法中创建个div元素作为控件的容器，并将其添加到地图容器中
+        backControl.prototype.initialize = function(map) {
+             //创建一个dom元素
+            var div = document.createElement('div');
+             //添加文字说明
+            div.appendChild(document.createTextNode('复原'));
+              // 设置样式
+            div.style.cursor = "pointer";
+            div.style.padding = "7px 10px";
+            div.style.boxShadow = "0 2px 6px 0 rgba(27, 142, 236, 0.5)";
+            div.style.borderRadius = "5px";
+            div.style.backgroundColor = "white";
+            // 绑定事件
+            div.onclick = function(e){
+                map.centerAndZoom(new BMapGL.Point(121.5, 31.2), 12);
+            }
+            // 添加DOM元素到地图中
+            map.getContainer().appendChild(div);
+            // 将DOM元素返回
+            return div;
+        }
+        //创建控件元素
+        var mybackCtrl = new backControl();
+        //添加到地图中
+        map.addControl(mybackCtrl);
+
+        //定义一个控件类
+        function localControl() {
+            this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+            this.defaultOffset = new BMapGL.Size(20, 60)
+        }
+        //通过JavaScript的prototype属性继承于BMap.Control
+        localControl.prototype = new BMapGL.Control();
+
+        //自定义控件必须实现自己的initialize方法，并且将控件的DOM元素返回
+        //在本方法中创建个div元素作为控件的容器，并将其添加到地图容器中
+        localControl.prototype.initialize = function(map) {
+             //创建一个dom元素
+            var div = document.createElement('div');
+             //添加文字说明
+            div.appendChild(document.createTextNode('定位'));
+              // 设置样式
+            div.style.cursor = "pointer";
+            div.style.padding = "7px 10px";
+            div.style.boxShadow = "0 2px 6px 0 rgba(27, 142, 236, 0.5)";
+            div.style.borderRadius = "5px";
+            div.style.backgroundColor = "white";
+            // 绑定事件,点击一次放大两级
+            div.onclick = function(e){
+                var geolocation = new BMapGL.Geolocation();
+                geolocation.getCurrentPosition(function(r){
+                    if(this.getStatus() == BMAP_STATUS_SUCCESS){
+
+                        var myIcon = new BMapGL.Icon("http://api.map.baidu.com/img/markers.png", new BMapGL.Size(23, 25), {
+                            offset: new BMapGL.Size(0, 25), // 指定定位位置
+                            imageOffset: new BMapGL.Size(0, 0 ) // 设置图片偏移
+                        });
+                        var mk = new BMapGL.Marker(r.point,{Icon:myIcon});
+                        map.addOverlay(mk);
+                        map.panTo(r.point);
+                        var point = new BMapGL.Point(r.point.lng, r.point.lat); 
+                        map.centerAndZoom(point, 16);
+                    }
+                    else {
+                        alert('failed' + this.getStatus());
+                    }        
+                });
+            }
+            // 添加DOM元素到地图中
+            map.getContainer().appendChild(div);
+            // 将DOM元素返回
+            return div;
+        }
+        //创建控件元素
+        var mylocalCtrl = new localControl();
+        //添加到地图中
+        map.addControl(mylocalCtrl);
+        
+
+        
+
+
+
+
+
+
+
+function a(){
+    // map.clearOverlays();
+        var geolocation = new BMapGL.Geolocation();
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                console.log(r);
+                var mk = new BMapGL.Marker(r.point);
+                map.addOverlay(mk);
+                map.panTo(r.point);
+                var point = new BMapGL.Point(r.point.lng, r.point.lat); 
+                map.centerAndZoom(point, 15);
+            }
+            else {
+                alert('failed' + this.getStatus());
+            }        
+        });
+
+    }
+
+
+
+</script> 
+</body> 
+</html>
