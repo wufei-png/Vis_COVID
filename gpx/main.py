@@ -25,6 +25,8 @@ def main():
     print("爬取全国主要地区每日新增病例成功")
 
     #新增感染者位置
+    #4月23号的http://sh.bendibao.com/news/202244/250578.shtm网站更新有误，导致位置无法爬取，等后续网站更新
+    #这也导致html文档没有数据来源，暂时不可用。
     print("爬取上海病例位置信息中")
     baseurl3 = "http://sh.bendibao.com/news/202244/250578.shtm"
     datalist3 = getdata3(baseurl3)
