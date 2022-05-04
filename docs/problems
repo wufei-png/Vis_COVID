@@ -1,0 +1,18 @@
+poi？
+闭环管理？
+舆情的数据来源
+
+要找的数据 
+      每日的新增
+      https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_aladin_banner#tab1根据你给的这个网址，可以找到当日数据，是否可以找到全球主要地区，中国省市，上海各区近一个月或者一段时间的新增，累计，以及具体到每个街道（某个地区比如交大附近周围的每日病例位置）
+
+      地区时间舆情数据
+
+分工：
+      这样就差最后一个待定的模块和ppt海报啥的没定
+
+上海刚爆发，经济数据只看到一个月的价格上涨
+武汉
+
+cd C:\Program Files (x86)\Intel\openvino_2021.4.752\inference_engine\samples\python\hello_query_device
+cd C:\Program Files (x86)\Intel\openvino_2021\deployment_tools\model_optimizer\install_prerequisites

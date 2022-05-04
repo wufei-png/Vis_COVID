@@ -1,6 +1,17 @@
-fork 
+fork
 git clone 到本地
 checkout -b 分支
 写代码
-写完后没问题git push
+写完后没问题 git push
 pull request
+https://learngitbranching.js.org/?locale=zh_CN
+https://www.liaoxuefeng.com/wiki/896043488029600
+
+数据：
+https://github.com/disease-sh/api/blob/master/README.md#sources
+https://corona.lmao.ninja/
+图示例
+antv echart官网例子
+copilot插件很好用 自动补全
+视频需要配音和字幕
+前端UI组件库：ElementUl,Antd,iView,Bootstrap
