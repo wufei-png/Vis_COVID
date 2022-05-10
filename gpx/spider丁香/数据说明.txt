@@ -1,0 +1,26 @@
+运行文件为spider.py
+	取丁香园的links并存储到otherpy文件夹中的provinceData.json和worldData.json
+	spider里也运行其他文件
+dealdatalist
+	取出所有省份和世界历史数据，放在data文件夹中的provinceData和worldData文件夹里
+dealdata
+	取出所有的省份和世界历史数据，选取需要的日期，合并在一个json文件里，即data文件夹中的china.json和world.json
+wzz和addwzz
+	本意是取出无症状患者的数据并且add进china.json但是有问题，暂时不用了吧
+oneday_allcity
+	取出昨天的全国所有市区级的数据，保存在data文件夹里的cityData.json中
+shanghai
+	从上海卫健委哪里爬取上海各个区的数据，和每日新增病例的位置放在addressdata文件夹下和shanghaidata.json中
+
+data中的数据说明：
+	address文件夹中是上海一个月本地新增病例的位置
+	provincedata文件夹中是中国各省份2020-2022年的历史数据，
+	china.json中是对provincedata文件夹截取2022年数据并合并得到的
+	worlddata文件夹中是世界各地区的2020-2022年的历史数据
+	world.json是对worlddata文件夹截取2022年数据合并得到的
+	shanghaidata.json是上海各地区一个月的历史感染人数和无症状人数
+	oneday_allcitydata.json是中国各地区（精确到市区）的每日新增数据，没有港澳台数据
+	
+
+
+我找不到完整的市区级的历史数据，如果大家有空，并且我们有需要，可以帮我找找。
