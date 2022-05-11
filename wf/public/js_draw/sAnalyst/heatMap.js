@@ -1,3 +1,4 @@
+console.log('offsetWidth',document.getElementById("heatMap").offsetHeight)
 var heat_padding = {
     left: 40,
     top: 5,
@@ -42,6 +43,8 @@ var colorScale = function (d) {
 $(document).ready(function () {
     let width = document.getElementById("heatMap").offsetWidth - heat_padding.left - heat_padding.right;
     let height = document.getElementById("heatMap").offsetHeight - heat_padding.top - heat_padding.bottom;
+    console.log('height',height)
+    console.log('offsetWidth123123123',document.getElementById("heatMap").offsetHeight)
     let svg = d3.select("#heatMap")
         .append("svg")
         .attr("height", height + heat_padding.top + heat_padding.bottom)
@@ -145,7 +148,9 @@ function update_tree(source) {
             if (!d.children) return "start";
             return "end";
         })
+        // .attr("font-size",'30px')
         .text(function (d) {
+            // console.log('d.data.name,',d.data.name);
             return d.data.name;
         })
         .style("fill-opacity", 1);
@@ -298,9 +303,11 @@ function drawHeatMap_heat(data) {
 
 function drawHeat(data) {
     // 计算连续的两个矩形之间的距离
+    console.log('data[0].date[1].date',data[0].date[1].date)
+    console.log('data[0].date[0].date',data[0].date[0].date)
     rectWidth = xScale(data[0].date[1].date) - xScale(data[0].date[0].date);
     rectWidth = rectWidth * 0.7;
-
+    console.log('rectWidth',rectWidth)
     d3.select('.heat_g').selectAll('g').remove();
 
     let province = d3.select('.heat_g').selectAll('.province')

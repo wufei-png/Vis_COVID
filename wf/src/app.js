@@ -11,6 +11,7 @@ import * as d3 from 'd3';
 import * as echarts from 'echarts';
 import * as jquery from 'jquery';
 var view_index=0;
+var current_order
 var child_get_order=(element)=>{
   //console.log("这是第",)
   var i=0;
@@ -19,26 +20,28 @@ var child_get_order=(element)=>{
   //console.log("这是第",i,'个');
   return i;
 }
+// var change_view=(order)=>{
 
-var init_change_button=()=>{
-  var buttons=document.getElementsByClassName('change_view_button');
-  for (let i = 0; i < buttons.length; i++) {
-    //console.log("typeof(Deletes[i])",Deletes[i]);
-    buttons[i].setAttribute('index',i);
-    buttons[i].addEventListener("click", change_view_handle);
-}
-}
-var change_view_handle=function(){
-  // console.log("typeof(element)",this);
-  change_view_handle_this(this);//this传参，比较重要的知识点
-}
-var change_view_handle_this=(element)=>{
-  // var order=child_get_order(element);
-  console.log('element',element)
-  var order=Number(element.getAttribute('index'));
-  console.log('order',(order));//这里为什么不对
-  change_view(order);
-}
+// }
+// var init_change_button=()=>{
+//   var buttons=document.getElementsByClassName('change_view_button');
+//   for (let i = 0; i < buttons.length; i++) {
+//     //console.log("typeof(Deletes[i])",Deletes[i]);
+//     buttons[i].setAttribute('index',i);
+//     buttons[i].addEventListener("click", change_view_handle);
+// }
+// }
+// var change_view_handle=function(){
+//   // console.log("typeof(element)",this);
+//   change_view_handle_this(this);//this传参，比较重要的知识点
+// }
+// var change_view_handle_this=(element)=>{
+//   // var order=child_get_order(element);
+//   console.log('element',element)
+//   var order=Number(element.getAttribute('index'));
+//   console.log('order',(order));//这里为什么不对
+//   change_view(order);
+// }
 
 var st_global=()=>{
 // Globe container
@@ -334,8 +337,8 @@ function init() {
         )
     )
     .polygonsTransitionDuration(200);
-  getCases();
-  init_change_button();
+  getCases();//调用这个更新时间跨度
+  // init_change_button();
   init_speed_button();
   // console.log('featureCollection',featureCollection)
   // //show_hisgram();

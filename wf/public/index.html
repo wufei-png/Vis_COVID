@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html lang="en">
 	<head>
 		<title>可视化分析系统</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -8,6 +8,7 @@
 		<style>
 			body {
             margin: 0px;
+
         }
 
         /* 所有 */
@@ -61,7 +62,12 @@
             font-size: 15px;
             color: #4b595f;
         }
-
+				#github {
+					display: flex;
+            justify-content: center;
+            align-items: center;
+						
+				}
     </style>
 	</head>
 	<body>
@@ -93,10 +99,11 @@
 
 				</el-container>
 			</el-container>
+			<div id="github"><a href="https://github.com/wufei-png/Vis_COVID">项目地址</a></div>
 		</div>
 		<!-- 引入组件库 -->
 		<script type="text/javascript" src="lib/vue.js"></script>
-		<script type="text/javascript" src="lib\echarts.min.js"></script>
+		<script type="text/javascript" src="lib/echarts.min.js"></script>
 		<script type="text/javascript" src="lib/elementui/index.js"></script>
 
 		<script type="text/javascript">
@@ -116,16 +123,16 @@
 									// name: "可视化展示",
 									id: "dataShow",
 									children: [{
-										name: "时空分析视图",
-										id: "tAnalyst",
-										url: "./st_analyse/st_global.html"
+										name: "全球分析视图",
+										url: "./st_analyse/global/st_global.html"
+									},{
+										name: "中国分析视图",
+										url: "./st_analyse/china/week12.html"
 									},{
 										name: "舆情分析视图",
-										id: "sAnalyst",
-										url: "./tAnalyst/tAnalyst.html"
+										url: "./sAnalyst/sAnalyst.html"
 									},{
 										name: "XX分析视图",
-										id: "eAnalyst",
 										url: "eAnalyst/eAnalyst.html"
 									}]
 								}
@@ -140,7 +147,7 @@
 						this.iframeUrl = url;
 					},
 					openGitHub() {
-						window.open("https://github.com/yuleGH", "_blank");
+						window.open("https://github.com/wufei-png/Vis_COVID", "_blank");
 					}
 				}
 			});

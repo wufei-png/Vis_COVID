@@ -1,5 +1,8 @@
 var thisColor = ['#74add1', '#313695', '#4575b4', '#abd9e9', '#fee090', '#d73027', '#fdae61', '#f46d43'];
 var cate = ['行业战疫', '境内疫情', '境外疫情', '政府行动', '辟谣', '事实', '误区', '谣言'];
+
+var dom = document.getElementById("lineBar");
+console.log('lineBar',dom.offsetHeight);
 var themeColor = d3.scaleOrdinal()
     .domain(cate)
     .range(thisColor);
@@ -109,3 +112,4 @@ function drawAreaWord(provinceDate) {
             myChart.resize();
     }
 }
+console.log('offsetWidth',document.getElementById("heatMap").offsetHeight)

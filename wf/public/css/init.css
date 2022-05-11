@@ -5,6 +5,7 @@ html {
 body {
     margin: 5px;
     height: 100%;
+    overflow-y: hidden;
 }
 
 /* 所有 */
@@ -14,6 +15,7 @@ body {
 }
 
 .grid-content-header {
+    /* background-color: red; */
     border-radius: 5px;
     min-height: 50px;
     border: 1px solid #171a18;

@@ -19,6 +19,7 @@ function calculateMA(line, data) {
 }
 function drawLineBar(){
     var dom = document.getElementById("lineBar");
+    console.log('lineBar1231231',dom.offsetHeight);
     var barChart = echarts.init(dom);
     $.getJSON("data/tendency.json", function(rawData) {
         let data = splitData(rawData);
@@ -52,7 +53,10 @@ function drawLineBar(){
                     name: '新增确诊人数',
                     minInterval: 500,
                     axisLabel: {
-                        formatter: '{value}'
+                        formatter: function (value) {//数据过大
+                            if (value>=10000)
+                                value = value / 1000 + 'k';
+                            return value;}
                     },
                     scale: true,
                     splitArea: {
@@ -87,9 +91,11 @@ function drawLineBar(){
             {
                 show: true,
                 type: 'slider',
-                top: '90%',
+                top: '85%',
+                bottom: '5%',
                 start: 50,
                 end: 100
+                
             }
             ],
             series: [

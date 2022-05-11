@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>elementUi</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="../lib/elementui/theme-chalk/index.css" type="text/css">
+	<link rel="stylesheet" href="../css/init.css" type="text/css">
+	<link rel="stylesheet" href="../css/newsOfarea.css" type="text/css">
+</head>
+
+<body>
+	<div id="app">
+		<el-row :gutter="16">
+			<el-col :span="24">
+				<div class="grid-content-header grid-content1 bg-purple" id="heatMap"></div>
+			</el-col>
+		</el-row>
+		<el-row :gutter="16">
+			<el-col :span="8">
+				<div class="grid-content-header grid-content2 bg-purple" id="areaWord"></div>
+			</el-col>
+			<el-col :span="8">
+				<div class="grid-content-header grid-content2 bg-purple" id="lineBar"></div>
+			</el-col>
+			<el-col :span="8">
+				<div class="grid-content-header grid-content2 bg-purple" id="treeMap"></div>
+			</el-col>
+		</el-row>
+	</div>
+	<style>
+		.el-row {
+			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0px;
+			}
+		}
+
+		.el-col {
+			border-radius: 4px;
+
+		}
+
+		.bg-purple {
+			background: #ffffff;
+		}
+
+		/* .bg-purple{
+	    background: #e5e9f2;
+	  } */
+		.grid-content1 {
+			border-radius: 4px;
+			height: 500px;
+		}
+
+		.grid-content2 {
+			border-radius: 4px;
+			min-height: 290px;
+		}
+
+		.row-bg {
+			padding: 10px 0;
+			background-color: #f9fafc;
+		}
+	</style>
+	<!-- 引入组件库 -->
+	<script type="text/javascript" src="../lib/vue.js"></script>
+	<script type="text/javascript" src="../lib/elementui/index.js"></script>
+	<script type="text/javascript" src="../lib/jquery.js"></script>
+	<script type="text/javascript" src="../lib/echarts.min.js"></script>
+	<script type="text/javascript" src="../lib/d3.v4.min.js"></script>
+	<script type="text/javascript" src="../lib/echarts-wordcloud.min.js"></script>
+	<script type="text/javascript" src="../js_draw/sAnalyst/areaWord.js"></script>
+	<!-- 下方两侧 countkeywords-->
+	<script type="text/javascript" src="../js_draw/sAnalyst/heatMap.js"></script>
+	<!-- 中间主体 province provinceCount areaCount-->
+	<script type="text/javascript" src="../js_draw/sAnalyst/lineBar.js"></script>
+	<!-- 下方中间 tendency-->
+	<script type="text/javascript" src="../js_draw/sAnalyst/treeMap.js"></script>
+		<!-- 下方两侧 countkeywords-->
+	<!-- textcategory -->
+	<script type="text/javascript">
+		new Vue({
+			el: "#app",
+			mounted() {
+				drawLineBar();//下面中间的图要单独加载一下
+				// drawTreeMap();
+				// drawAreaWord();;这两个用onclick调用
+			}
+		});
+	</script>
+</body>
+
+</html>
