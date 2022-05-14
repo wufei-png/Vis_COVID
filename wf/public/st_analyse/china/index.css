@@ -1,0 +1,163 @@
+body {
+    /*font-family: 'Space Mono', monospace;*/
+    overflow: hidden;
+    background: black;
+}
+
+
+/*.wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+*/
+
+#china-map {
+    position: absolute;
+    left: 0;
+    width: 1240px;
+    height: 800px;
+    margin: 10px auto;
+}
+
+.top-info-container {
+    z-index: 1;
+    top: 20px;
+    position: absolute;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.title {
+    font-size: 35px;
+    color: #e6f1ff;
+}
+
+.title-desc {
+    margin-top: 5px;
+    color: #ccd6f6;
+    padding: 0 5px;
+}
+
+.bottom-info-container {
+    z-index: 1;
+    bottom: 20px;
+    position: absolute;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.timeline-container {
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    color: #fff;
+    width: 60%;
+    align-items: center;
+}
+
+.play-button {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: rgba(1, 1, 1, 0);
+    border: 1px solid #ccd6f6;
+    color: #ccd6f6;
+    outline: none;
+    width: 5em;
+}
+
+.slider {
+    -webkit-appearance: none;
+    height: 2px;
+    width: 100%;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: #ccd6f6;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+    border: 2px solid #ccd6f6;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+    border: 2px solid #ccd6f6;
+}
+
+.speed {
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 10px;
+    cursor: pointer;
+    background-color: rgba(1, 1, 1, 0);
+    border: 1px solid #ccd6f6;
+    color: #ccd6f6;
+    outline: none;
+    width: 4em;
+    position: relative;
+    top: 30px;
+    left: -960px;
+    margin-left: 5px;
+}
+
+#infected {
+    color: goldenrod;
+}
+
+#deaths {
+    color: #ff4848;
+}
+
+#recovered {
+    color: #1ae021;
+}
+
+.graph {
+    z-index: 1;
+    top: 40px;
+    position: absolute;
+    left: 72%;
+    width: 50%;
+    color: #e6f1ff;
+    height: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#histogram {
+    width: 55%;
+    height: 370px;
+}
+
+#pie {
+    width: 55%;
+    height: 450px;
+    position: relative;
+    top: -40px;
+    left: -20px;
+}
