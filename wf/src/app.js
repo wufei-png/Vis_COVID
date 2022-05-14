@@ -9,7 +9,6 @@ import {
 } from './constants';
 import * as d3 from 'd3';
 import * as echarts from 'echarts';
-import * as jquery from 'jquery';
 var view_index=0;
 var current_order
 var child_get_order=(element)=>{
@@ -124,6 +123,7 @@ var speed_handle_this=(element)=>{
 }
 
 function show_hisgram() {
+  
   var option = {
       backgroundColor: 'rgba(207,176,18,0)',
       title: {
@@ -358,7 +358,13 @@ function polygonFromCenter(center, radius=0.5, num=10) {
 }
 
 async function getCases() {
+  
   countries = await request(CASES_API);
+//   $.getJSON(CASES_API, function(data) {
+//     //data 代表读取到的json中的数据
+//     countries=data;
+// });
+//   console.log('countries',(countries));
   featureCollection = (await request(GEOJSON_URL)).features;//地图数据
 
   // featureCollection2 = (await request(GEOJSON_URL2)).features.map(d => {

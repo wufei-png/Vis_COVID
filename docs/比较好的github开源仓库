@@ -9,7 +9,12 @@ https://github.com/FelixZFB/wuhan_2019-nCoV.git
 https://github.com/WYKXLDZ/COVID-2020-Visulization.git （代码可读性差，但是图可以借鉴）
 
 获取数据
+丁香园：https://github.com/BlankerL/DXY-COVID-19-Data/releases
 https://github.com/Bai-Yu-Lan/SH-COVID19
+https://www.arcgis.com/apps/dashboards/bda7594740fd40299423467b48e9ecf6
+https://github.com/owid/covid-19-data/tree/master/public/data 中 https://covid.ourworldindata.org/data/owid-covid-data.csv
+https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series (治愈2021停止更新)
+http://covid19.moyutime.cn/
 以下我看着可以，但是没实际跑：
 
 https://github.com/yunwei37/COVID-19-NLP-vis.git

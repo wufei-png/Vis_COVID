@@ -1,2 +1,4 @@
 /wf/node_modules/
+/data_pre_process/
+*.csv
 #用test.txt测试，有效
