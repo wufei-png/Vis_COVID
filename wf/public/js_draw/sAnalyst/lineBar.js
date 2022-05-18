@@ -83,7 +83,7 @@ function drawLineBar(){
                     }
                 }
             ],
-            dataZoom: [{
+            dataZoom: [{//自动实现下方的调节
                 type: 'inside',
                 start: 0,
                 end: 10

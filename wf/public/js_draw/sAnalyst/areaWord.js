@@ -1,15 +1,17 @@
 var thisColor = ['#74add1', '#313695', '#4575b4', '#abd9e9', '#fee090', '#d73027', '#fdae61', '#f46d43'];
 var cate = ['行业战疫', '境内疫情', '境外疫情', '政府行动', '辟谣', '事实', '误区', '谣言'];
 
-var dom = document.getElementById("lineBar");
-console.log('lineBar',dom.offsetHeight);
+// var dom = document.getElementById("lineBar");
+// console.log('lineBar',dom.offsetHeight);
 var themeColor = d3.scaleOrdinal()
     .domain(cate)
     .range(thisColor);
 function drawAreaWord(provinceDate) {
     var myChart = echarts.init(document.getElementById('areaWord'));
     function getList(wordList) {
-        let list = [];
+        // console.log(' wordList', wordList)
+        // console.log(' wordList.length', wordList.length)
+        let list = [];  
         for(let i = 0 ; i < wordList.length ; i++){
             for(let j = 0 ; j < wordList[i].length ; j++){
                 list.push({
@@ -21,7 +23,7 @@ function drawAreaWord(provinceDate) {
         }
         return list;
     }
-    function uniqueArr(arr){
+    function uniqueArr(arr){//name一样只要一个
         let Array = [];
         let names = [];
         for(let i = 0 ; i < arr.length ; i++){
@@ -59,7 +61,7 @@ function drawAreaWord(provinceDate) {
                 },
                 tooltip : {
                     formatter:function (info) {
-                        let str = "类型:" + info.data.category + "<br>"
+                        let str = "类型:" + info.data.category + "<br>"//换行喽
                             + "热度:" + info.data.value;
                         return str;
                     },
@@ -112,4 +114,4 @@ function drawAreaWord(provinceDate) {
             myChart.resize();
     }
 }
-console.log('offsetWidth',document.getElementById("heatMap").offsetHeight)
+// console.log('offsetWidth',document.getElementById("heatMap").offsetHeight)

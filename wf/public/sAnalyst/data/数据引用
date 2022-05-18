@@ -1,0 +1,26 @@
+areaWord.js 下方左侧
+  <!-- 下方左侧 countkeywords-->
+
+treeMap.js 下方右侧
+  <!-- 下方右侧 textcategory-->
+
+heatMap.js 中间主体
+  <!-- 中间主体 province provinceCount areaCount-->
+
+lineBar.js 下方中间
+	<!-- 下方中间 tendency-->
+
+上方中间 heatmap
+下方：
+  左侧id areaword 
+  中间  lineBar
+  右侧  treeMap
+
+  countkeywords:
+                              "name": "钻石公主", 直接显示
+                            "value": 1, hover 热度
+                            "category": "境外疫情"hover
+
+  areaCount：
+  7个地域折叠后hover的热度即是 
+    "num": 0

@@ -81,6 +81,7 @@ function getList(data){
             children:getChildren(data[nameList[i]].children,nameList[i])
         });
     }
+    console.log('list',list)
     return list;
 }
 
@@ -96,7 +97,7 @@ function getChildren(childrenList,id) {
     return children;
 }
 
-function getLevelOption() {
+function getLevelOption() {//根据类型确定颜色吧
     return [
         {
             color:['#74add1', '#313695', '#4575b4', '#abd9e9', '#fee090', '#d73027', '#fdae61', '#f46d43'],
