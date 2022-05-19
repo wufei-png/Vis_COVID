@@ -106,7 +106,7 @@ var st_china = () => {
     // 改变echarts
     async function changeEcharts(date) {
         var tmpSeriesData = [];
-        provinces = await request('../../../../../gpx/spider丁香/data/china.json');
+        provinces = await request('../../../sAnalyst/data/china.json');
         for (var province in provinces) {
             var ser = {
                 name: province,
@@ -159,8 +159,8 @@ var st_china = () => {
     init();
 
     async function getCases(date) {
-        countries = await request('../../../../../gpx/spider丁香/data/world.json')
-        provinces = await request('../../../../../gpx/spider丁香/data/china.json')
+        countries = await request('../../../sAnalyst/data/world.json')
+        provinces = await request('../../../sAnalyst/data/china.json')
             //featureCollection = (await request(GEOJSON_URL)).features; //地图数据
 
         dates = Object.keys(countries['中国']);
