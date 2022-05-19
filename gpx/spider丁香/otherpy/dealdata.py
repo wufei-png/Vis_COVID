@@ -48,7 +48,9 @@ def deal_chinadatalist():
     with open(WriteFilePath, 'w', encoding="utf-8") as file:
         json.dump(allcityjson, file, indent=3, ensure_ascii=False)
 
-def getchinadata():
+def getchinadata(thedate):
+
+    begindate = thedate[:4] + thedate[5:7] + thedate[8:10]
     allcity = ['香港', '台湾', '上海市', '吉林省', '浙江省', '黑龙江省', '北京市', '江西省', '广东省', '山东省',
                '福建省', '四川省', '江苏省', '内蒙古自治区', '河南省', '湖南省', '山西省', '辽宁省', '青海省',
                '云南省', '海南省', '广西壮族自治区', '河北省', '安徽省', '湖北省', '陕西省', '重庆市', '新疆维吾尔自治区',
@@ -63,7 +65,7 @@ def getchinadata():
         with open(cityfilename, 'r', encoding="utf-8") as f:
             onecityData = json.load(f)["data"]
             for onedaycitydata in onecityData:
-                if int(onedaycitydata["dateId"]) > 20220100:
+                if int(onedaycitydata["dateId"]) > int(begindate):
                     NewonecityData[str(onedaycitydata["dateId"])[:4]+"-"+str(onedaycitydata["dateId"])[4:6]+"-"+str(onedaycitydata["dateId"])[6:8]] = onedaycitydata
         allcityjson[allcitynames[onecity]] = NewonecityData
     return allcityjson
