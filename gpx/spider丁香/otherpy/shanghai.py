@@ -82,14 +82,7 @@ def getdatafromlink(alllinks):
         j = i
         while date[j] != "日":
             j += 1
-        newdate = "2022-"
-        if i == k+1:
-            newdate += "0"
-        newdate += date[k:i] + "-"
-        if i+2 == j:
-            newdate += "0"
-        newdate += date[i+1:j]
-        date = newdate
+        date = "2022-" + date[k:i] + "-" + date[i+1:j]
 
         allpartdata = bs.find("section", {"data-id": "106156"}).find("section", {"data-id": "106156"}).find("p").text.split("，")[1].split("和")
         shanghaitotal = {}
@@ -130,3 +123,4 @@ def getdatafromlink(alllinks):
 
     with open("./data/shanghaiData.json", "w", encoding="utf-8") as f:
         json.dump(shanghaidata, f, indent=3, ensure_ascii=False)
+

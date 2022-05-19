@@ -2,10 +2,8 @@
 import requests
 import json
 from bs4 import BeautifulSoup
-import otherpy.addwzz as addwzzz
 import otherpy.dealdata as dealdata
 import otherpy.dealjsonlist as dealjsonlist
-import otherpy.wzz as wzz
 import otherpy.oneday_allcity as oneday_allcity
 import otherpy.shanghai as shanghai
 
@@ -48,16 +46,15 @@ def main():
     getTheList("https://ncov.dxy.cn/ncovh5/view/pneumonia")
     dealjsonlist.get_the_world_data()
     dealjsonlist.get_the_province_data()
-    dealdata.deal_worlddatalist()
-    dealdata.deal_chinadatalist()
-    #wzz.getallpagedata()
-    #addwzz.addwzztochina()
-    print("写入昨天各城市疫情数据中")
-    oneday_allcity.main()
-    print("写入昨天各城市疫情数据成功")
-    print("写入上海各区历史数据和感染者位置信息中")
-    shanghai.main()
-    print("写入上海各区历史数据和感染者位置信息成功")
+    date = "2020-12-31"
+    dealdata.deal_worlddatalist(date)
+    dealdata.deal_chinadatalist(date)
+    # print("写入昨天各城市疫情数据中")
+    # oneday_allcity.main()
+    # print("写入昨天各城市疫情数据成功")
+    # print("写入上海各区历史数据和感染者位置信息中")
+    # shanghai.main()
+    # print("写入上海各区历史数据和感染者位置信息成功")
 
 if __name__ == '__main__':
     main()

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
 
-def deal_worlddatalist():
-    allcountryjson = getallcountrydata()
+def deal_worlddatalist(date):
+    allcountryjson = getallcountrydata(date)
     WriteFilePath = "./data/world.json"
     with open(WriteFilePath, 'w', encoding="utf-8") as file:
         json.dump(allcountryjson, file, indent=3, ensure_ascii=False)
 
-def getallcountrydata():
+def getallcountrydata(date):
+    begindate = date[:4] + date[5:7] + date[8:10]
     allcountry = ['法国', '德国', '韩国', '英国', '西班牙', '印度', '意大利', '土耳其', '巴西', '荷兰', '俄罗斯', 
                     '越南', '日本', '比利时', '阿根廷', '奥地利', '瑞士', '伊朗', '希腊', '葡萄牙', '丹麦', '瑞典', 
                     '墨西哥', '斯洛伐克', '塞尔维亚', '智利', '伊拉克', '马来西亚', '爱尔兰', '乌克兰', '挪威', '哈萨克斯坦',
@@ -37,20 +38,20 @@ def getallcountrydata():
         with open(countryfilename, 'r', encoding="utf-8") as f:
             onecountryData = json.load(f)["data"]
             for onedaycountrydata in onecountryData:
-                if int(onedaycountrydata["dateId"]) > 20220100:
+                if int(onedaycountrydata["dateId"]) > int(begindate):
                     NewonecountryData[str(onedaycountrydata["dateId"])[:4] + "-" + str(onedaycountrydata["dateId"])[4:6] + "-" + str(onedaycountrydata["dateId"])[6:8]] = onedaycountrydata
         allcountryjson[onecountry] = NewonecountryData
     return allcountryjson
 
-def deal_chinadatalist():
-    allcityjson = getchinadata()
+def deal_chinadatalist(date):
+    allcityjson = getchinadata(date)
     WriteFilePath = "./data/china.json"
     with open(WriteFilePath, 'w', encoding="utf-8") as file:
         json.dump(allcityjson, file, indent=3, ensure_ascii=False)
 
-def getchinadata(thedate):
+def getchinadata(date):
 
-    begindate = thedate[:4] + thedate[5:7] + thedate[8:10]
+    begindate = date[:4] + date[5:7] + date[8:10]
     allcity = ['香港', '台湾', '上海市', '吉林省', '浙江省', '黑龙江省', '北京市', '江西省', '广东省', '山东省',
                '福建省', '四川省', '江苏省', '内蒙古自治区', '河南省', '湖南省', '山西省', '辽宁省', '青海省',
                '云南省', '海南省', '广西壮族自治区', '河北省', '安徽省', '湖北省', '陕西省', '重庆市', '新疆维吾尔自治区',
