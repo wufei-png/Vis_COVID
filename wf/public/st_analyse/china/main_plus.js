@@ -106,12 +106,24 @@ var st_china = () => {
     // 改变echarts
     async function changeEcharts(date) {
         var tmpSeriesData = [];
+        var tmpMoreInfo = [];
         provinces = await request('../../../sAnalyst/data/china.json');
         for (var province in provinces) {
             var ser = {
                 name: province,
-                value: provinces[province][date]['currentConfirmedCount']
+                value: provinces[province][date]['currentConfirmedCount'],
+                confirmedCount: provinces[province][date]['confirmedCount'], //累计确诊
+                deadCount: provinces[province][date]['deadCount'], //累计死亡
+                curedCount: provinces[province][date]['curedCount']
             };
+            var info = {
+                provinceName: province,
+                confirmedCount: provinces[province][date]['confirmedCount'], //累计确诊
+                deadCount: provinces[province][date]['deadCount'], //累计死亡
+                curedCount: provinces[province][date]['curedCount'] //累计治愈
+            };
+            tmpMoreInfo.push(info);
+            //console.log(tmpMoreInfo);
             tmpSeriesData.push(ser);
         }
         var option = {
@@ -127,7 +139,38 @@ var st_china = () => {
                 top: '50%'
             },
             tooltip: {
-                trigger: 'item'
+                trigger: 'item',
+                formatter: function(params) {
+                    console.log(tmpMoreInfo);
+                    for (var i = 0; i < tmpSeriesData.length; i++) {
+                        if (tmpMoreInfo[i].provinceName === params.name) {
+                            var res = params.name + '<br/>';
+                            res += '现存确诊 : ' + params.value + '</br>';
+                            res += '累计确诊 : ' + tmpMoreInfo[i].confirmedCount + '</br>';
+                            res += '累计死亡 : ' + tmpMoreInfo[i].deadCount + '</br>';
+                            res += '累计治愈 : ' + tmpMoreInfo[i].curedCount + '</br>';
+                            return res;
+                        }
+                    }
+                    // let str = '';
+                    // params.forEach((item, idx) => {
+                    //     str += `${item.marker}${item.seriesName}: ${item.data}`
+                    //     switch (idx) {
+                    //         case 0:
+                    //             str += '个';
+                    //             break;
+                    //         case 1:
+                    //             str += '条';
+                    //             break;
+                    //         case 2:
+                    //             str += '次';
+                    //             break;
+                    //         default:
+                    //             str += 'w(ﾟДﾟ)w'
+
+                    //     }
+                    // })
+                }
             },
             series: [{
                 name: '每日新增',
