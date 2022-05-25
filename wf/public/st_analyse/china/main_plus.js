@@ -107,7 +107,7 @@ var st_china = () => {
     async function changeEcharts(date) {
         var tmpSeriesData = [];
         var tmpMoreInfo = [];
-        provinces = await request('../../../sAnalyst/data/china.json');
+        provinces = await request('../../../sAnalyst/data/new_data/china.json');
         for (var province in provinces) {
             var ser = {
                 name: province,
@@ -202,8 +202,8 @@ var st_china = () => {
     init();
 
     async function getCases(date) {
-        countries = await request('../../../sAnalyst/data/world.json')
-        provinces = await request('../../../sAnalyst/data/china.json')
+        countries = await request('../../../sAnalyst/data/new_data/world.json')
+        provinces = await request('../../../sAnalyst/data/new_data/china.json')
             //featureCollection = (await request(GEOJSON_URL)).features; //地图数据
 
         dates = Object.keys(countries['中国']);
