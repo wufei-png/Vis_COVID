@@ -3,18 +3,18 @@ function drawTreeMap(provinceDate) {
     var treeMapChart = echarts.init(dom);
     var treeOption = null;
     treeMapChart.showLoading();
-    $.get('data/textcategory.json', function (data) {
+    $.get('data/new_data/textcategory.json', function(data) {
         treeMapChart.hideLoading();
         var formatUtil = echarts.format;
 
         let province = provinceDate.province;
         let time = provinceDate.date;
-        
+
         let selectedData = [];
-        for(let i = 0;i<data.length;++i){
-            if(data[i].province == province){
-                for(let j = 0;j<data[i].date.length;++j){
-                    if(data[i].date[j].date == time){
+        for (let i = 0; i < data.length; ++i) {
+            if (data[i].province == province) {
+                for (let j = 0; j < data[i].date.length; ++j) {
+                    if (data[i].date[j].date == time) {
                         selectedData = data[i].date[j];
                     }
                 }
@@ -24,31 +24,30 @@ function drawTreeMap(provinceDate) {
 
         treeMapChart.setOption(
             treeOption = {
-            tooltip: {
-                formatter: function (info) {
-                    var value = info.value;
-                    var treePathInfo = info.treePathInfo;
-                    var treePath = [];
+                tooltip: {
+                    formatter: function(info) {
+                        var value = info.value;
+                        var treePathInfo = info.treePathInfo;
+                        var treePath = [];
 
-                    for (var i = 1; i < treePathInfo.length; i++) {
-                        treePath.push(treePathInfo[i].name);
+                        for (var i = 1; i < treePathInfo.length; i++) {
+                            treePath.push(treePathInfo[i].name);
+                        }
+                        return [
+                            '<div class="tooltip-title">' + formatUtil.encodeHTML(info.name) + '</div>',
+                            '个数: ' + formatUtil.addCommas(value),
+                        ].join('');
                     }
-                    return [
-                        '<div class="tooltip-title">' + formatUtil.encodeHTML(info.name) + '</div>',
-                        '个数: ' + formatUtil.addCommas(value),
-                    ].join('');
-                }
-            },
-            series: [
-                {
+                },
+                series: [{
                     type: 'treemap',
                     label: {
                         show: true,
                         formatter: '{b}'
                     },
-                    roam:false,
-                    nodeClick:false,
-                    breadcrumb:false,
+                    roam: false,
+                    nodeClick: false,
+                    breadcrumb: false,
                     upperLabel: {
                         show: true,
                         height: 30
@@ -58,9 +57,8 @@ function drawTreeMap(provinceDate) {
                     },
                     levels: getLevelOption(),
                     data: list
-                }
-            ]
-        });
+                }]
+            });
     });
     if (treeOption && typeof treeOption === "object") {
         treeMapChart.setOption(treeOption, true);
@@ -70,37 +68,36 @@ function drawTreeMap(provinceDate) {
     })
 }
 
-function getList(data){
+function getList(data) {
     let list = [];
     let nameList = ['行业战疫', '境内疫情', '境外疫情', '政府行动', '辟谣', '事实', '误区', '谣言'];
-    for(let i = 0 ; i < nameList.length ; i++){
+    for (let i = 0; i < nameList.length; i++) {
         list.push({
             name: nameList[i],
-            id:nameList[i],
+            id: nameList[i],
             value: Number(data[nameList[i]].value),
-            children:getChildren(data[nameList[i]].children,nameList[i])
+            children: getChildren(data[nameList[i]].children, nameList[i])
         });
     }
-    console.log('list',list)
+    console.log('list', list)
     return list;
 }
 
-function getChildren(childrenList,id) {
+function getChildren(childrenList, id) {
     let children = [];
-    for(let i = 0 ; i < childrenList.length ; i++){
+    for (let i = 0; i < childrenList.length; i++) {
         children.push({
-            id:id,
-            name:childrenList[i].name,
-            value:childrenList[i].value,
+            id: id,
+            name: childrenList[i].name,
+            value: childrenList[i].value,
         })
     }
     return children;
 }
 
-function getLevelOption() {//根据类型确定颜色吧
-    return [
-        {
-            color:['#74add1', '#313695', '#4575b4', '#abd9e9', '#fee090', '#d73027', '#fdae61', '#f46d43'],
+function getLevelOption() { //根据类型确定颜色吧
+    return [{
+            color: ['#74add1', '#313695', '#4575b4', '#abd9e9', '#fee090', '#d73027', '#fdae61', '#f46d43'],
             colorMappingBy: 'id',
             itemStyle: {
                 borderColor: '#039e6d',
