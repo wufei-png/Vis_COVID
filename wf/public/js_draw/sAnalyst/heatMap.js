@@ -13,10 +13,11 @@ var yDomain = []; //y轴的定义域 每个省份的名称
 var xDomain; //x轴的定义域 日期
 var xScale; //x轴的比例尺
 var yScale; //y轴的比例尺
-var startTime = '2019/12/22'; //框选时间的开始
-var endTime = '2020/5/23'; //框选时间的结束
+var startTime = '2021/01/01'; //框选时间的开始
+var endTime = '2021/02/20'; //框选时间的结束
 var presentData = []; // 热力图实时的数据
 var mergeData = []; //合并省份之后的数据含位置信息
+var tmpData = [];
 var rectWidth;
 var duration = 750;
 var heatColor = [
@@ -36,7 +37,8 @@ var heatColor = [
 
 var colorDomain = []; // 颜色的定义域 每省每日的舆情数值
 var colorScale = function(d) {
-    let index = parseInt(colorDomain.indexOf(d) / 2);
+    //let index = parseInt(colorDomain.indexOf(d) / 2);
+    index = d;
     return heatColor[index];
 }; //热力图颜色的比例尺
 
@@ -62,10 +64,15 @@ $(document).ready(function() {
         for (let i = 0; i < data.length; ++i) {
             data[i]._date = deepCopy(data[i].date);
         }
-        allHeatData = deepCopy(data);
+
+        //allHeatData = deepCopy(data);
         presentData = deepCopy(data);
-        getMergeData(data);
+        //getMergeData(data);
         drawHeatMap_heat(presentData);
+        setTimeRangeForHeat('2021/01/01', '2021/02/20');
+        drawHeat(presentData);
+        allHeatData = deepCopy(data);
+        getMergeData(data);
     });
 });
 
@@ -298,7 +305,7 @@ function drawHeatMap_heat(data) {
         .attr("id", "heat_g")
         .attr('class', 'heat_g');
 
-    drawHeat(data);
+    //drawHeat(data);
 }
 
 function drawHeat(data) {
@@ -656,4 +663,23 @@ function deepCopy(obj, cache = []) {
     })
 
     return copy;
+}
+
+function changeData() {
+
+    $.getJSON('data/new_data/provinceCount.json', function(data) {
+        for (let i = 0; i < data.length; ++i) {
+            data[i]._date = deepCopy(data[i].date);
+        }
+
+        //allHeatData = deepCopy(data);
+        presentData = deepCopy(data);
+        //getMergeData(data);
+        drawHeatMap_heat(presentData);
+        setTimeRangeForHeat('2021/01/01', '2021/02/20');
+        drawLineBar();
+        drawHeat(presentData);
+        allHeatData = deepCopy(data);
+        getMergeData(data);
+    })
 }

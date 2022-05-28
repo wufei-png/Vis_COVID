@@ -132,6 +132,7 @@ function drawLineBar() {
         let endValue = barChart.getOption().dataZoom[1].endValue;
         let start = barChart.getOption().xAxis[0].data[startValue];
         let end = barChart.getOption().xAxis[0].data[endValue];
+        //console.log('start', start, 'end', end);
         setTimeRangeForHeat(start, end);
         drawHeat(presentData);
     })

@@ -152,24 +152,6 @@ var st_china = () => {
                             return res;
                         }
                     }
-                    // let str = '';
-                    // params.forEach((item, idx) => {
-                    //     str += `${item.marker}${item.seriesName}: ${item.data}`
-                    //     switch (idx) {
-                    //         case 0:
-                    //             str += '个';
-                    //             break;
-                    //         case 1:
-                    //             str += '条';
-                    //             break;
-                    //         case 2:
-                    //             str += '次';
-                    //             break;
-                    //         default:
-                    //             str += 'w(ﾟДﾟ)w'
-
-                    //     }
-                    // })
                 }
             },
             series: [{
