@@ -122,3 +122,73 @@ function getLevelOption() { //根据类型确定颜色吧
         }
     ];
 }
+
+function drawTreeMap1(provinceDate) {
+    var dom = document.getElementById("treeMap");
+    var treeMapChart = echarts.init(dom);
+    var treeOption = null;
+    treeMapChart.showLoading();
+    $.get('data/textcategory.json', function(data) {
+        treeMapChart.hideLoading();
+        var formatUtil = echarts.format;
+
+        let province = provinceDate.province;
+        let time = provinceDate.date;
+
+        let selectedData = [];
+        for (let i = 0; i < data.length; ++i) {
+            if (data[i].province == province) {
+                for (let j = 0; j < data[i].date.length; ++j) {
+                    if (data[i].date[j].date == time) {
+                        selectedData = data[i].date[j];
+                    }
+                }
+            }
+        }
+        let list = getList(selectedData);
+
+        treeMapChart.setOption(
+            treeOption = {
+                tooltip: {
+                    formatter: function(info) {
+                        var value = info.value;
+                        var treePathInfo = info.treePathInfo;
+                        var treePath = [];
+
+                        for (var i = 1; i < treePathInfo.length; i++) {
+                            treePath.push(treePathInfo[i].name);
+                        }
+                        return [
+                            '<div class="tooltip-title">' + formatUtil.encodeHTML(info.name) + '</div>',
+                            '个数: ' + formatUtil.addCommas(value),
+                        ].join('');
+                    }
+                },
+                series: [{
+                    type: 'treemap',
+                    label: {
+                        show: true,
+                        formatter: '{b}'
+                    },
+                    roam: false,
+                    nodeClick: false,
+                    breadcrumb: false,
+                    upperLabel: {
+                        show: true,
+                        height: 30
+                    },
+                    itemStyle: {
+                        borderColor: '#fff'
+                    },
+                    levels: getLevelOption(),
+                    data: list
+                }]
+            });
+    });
+    if (treeOption && typeof treeOption === "object") {
+        treeMapChart.setOption(treeOption, true);
+    }
+    window.addEventListener('resize', function() {
+        treeMapChart.resize();
+    })
+}

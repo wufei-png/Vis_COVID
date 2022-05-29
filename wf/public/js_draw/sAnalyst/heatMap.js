@@ -20,6 +20,7 @@ var mergeData = []; //合并省份之后的数据含位置信息
 var tmpData = [];
 var rectWidth;
 var duration = 750;
+var changeYear = 1;
 var heatColor = [
     '#e1e1e1', '#313695',
     '#4575b4', '#74add1',
@@ -45,8 +46,8 @@ var colorScale = function(d) {
 $(document).ready(function() {
     let width = document.getElementById("heatMap").offsetWidth - heat_padding.left - heat_padding.right;
     let height = document.getElementById("heatMap").offsetHeight - heat_padding.top - heat_padding.bottom;
-    console.log('height', height)
-    console.log('offsetWidth123123123', document.getElementById("heatMap").offsetHeight)
+    // console.log('height', height)
+    // console.log('offsetWidth123123123', document.getElementById("heatMap").offsetHeight)
     let svg = d3.select("#heatMap")
         .append("svg")
         .attr("height", height + heat_padding.top + heat_padding.bottom)
@@ -59,6 +60,15 @@ $(document).ready(function() {
 
     $.getJSON("data/new_data/province.json", function(treeData) {
         drawHeatMap_tree(treeData, width, height);
+    });
+    $.getJSON('data/new_data/provinceCount_mini.json', function(data) {
+        for (let i = 0; i < data.length; ++i) {
+            data[i]._date = deepCopy(data[i].date);
+        }
+        presentData = deepCopy(data);
+        drawHeatMap_heat(presentData);
+        setTimeRangeForHeat('2021/01/01', '2021/02/20');
+        drawHeat(presentData);
     });
     $.getJSON('data/new_data/provinceCount.json', function(data) {
         for (let i = 0; i < data.length; ++i) {
@@ -355,8 +365,13 @@ function drawHeat(data) {
                     province: d.province,
                     date: d.date
                 };
-                drawAreaWord(provinceDate);
-                drawTreeMap(provinceDate);
+                if (changeYear == 1) {
+                    drawAreaWord(provinceDate);
+                    drawTreeMap(provinceDate);
+                } else {
+                    drawAreaWord1(provinceDate);
+                    drawTreeMap1(provinceDate);
+                };
             }
         });
 
@@ -666,20 +681,34 @@ function deepCopy(obj, cache = []) {
 }
 
 function changeData() {
-
-    $.getJSON('data/new_data/provinceCount.json', function(data) {
-        for (let i = 0; i < data.length; ++i) {
-            data[i]._date = deepCopy(data[i].date);
-        }
-
-        //allHeatData = deepCopy(data);
-        presentData = deepCopy(data);
-        //getMergeData(data);
-        drawHeatMap_heat(presentData);
-        setTimeRangeForHeat('2021/01/01', '2021/02/20');
-        drawLineBar();
-        drawHeat(presentData);
-        allHeatData = deepCopy(data);
-        getMergeData(data);
-    })
+    if (changeYear == 1) {
+        $.getJSON('data/provinceCount.json', function(data) {
+            for (let i = 0; i < data.length; ++i) {
+                data[i]._date = deepCopy(data[i].date);
+            }
+            allHeatData = deepCopy(data);
+            presentData = deepCopy(data);
+            drawLineBar1();
+            getMergeData(data);
+            drawHeatMap_heat(presentData);
+            drawHeat(presentData);
+        });
+        changeYear = 0;
+    } else if (changeYear == 0) {
+        $.getJSON('data/new_data/provinceCount.json', function(data) {
+            for (let i = 0; i < data.length; ++i) {
+                data[i]._date = deepCopy(data[i].date);
+            }
+            //allHeatData = deepCopy(data);
+            presentData = deepCopy(data);
+            //getMergeData(data);
+            drawHeatMap_heat(presentData);
+            setTimeRangeForHeat('2021/01/01', '2021/02/20');
+            drawLineBar();
+            drawHeat(presentData);
+            allHeatData = deepCopy(data);
+            getMergeData(data);
+        });
+        changeYear = 1;
+    }
 }
