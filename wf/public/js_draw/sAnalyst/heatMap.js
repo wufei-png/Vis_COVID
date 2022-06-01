@@ -61,27 +61,27 @@ $(document).ready(function() {
     $.getJSON("data/new_data/province.json", function(treeData) {
         drawHeatMap_tree(treeData, width, height);
     });
-    $.getJSON('data/new_data/provinceCount_mini.json', function(data) {
-        for (let i = 0; i < data.length; ++i) {
-            data[i]._date = deepCopy(data[i].date);
-        }
-        presentData = deepCopy(data);
-        drawHeatMap_heat(presentData);
-        setTimeRangeForHeat('2021/01/01', '2021/02/20');
-        drawHeat(presentData);
-    });
+    // $.getJSON('data/new_data/provinceCount_mini.json', function(data) {
+    //     for (let i = 0; i < data.length; ++i) {
+    //         data[i]._date = deepCopy(data[i].date);
+    //     }
+    //     presentData = deepCopy(data);
+    //     drawHeatMap_heat(presentData);
+    //     setTimeRangeForHeat('2021/01/01', '2021/02/20');
+    //     drawHeat(presentData);
+    // });
     $.getJSON('data/new_data/provinceCount.json', function(data) {
         for (let i = 0; i < data.length; ++i) {
-            data[i]._date = deepCopy(data[i].date);
+            data[i]._date = data[i].date;
         }
 
         //allHeatData = deepCopy(data);
-        presentData = deepCopy(data);
+        presentData = data;
         //getMergeData(data);
         drawHeatMap_heat(presentData);
         setTimeRangeForHeat('2021/01/01', '2021/02/20');
         drawHeat(presentData);
-        allHeatData = deepCopy(data);
+        allHeatData = data;
         getMergeData(data);
     });
 });
@@ -697,16 +697,16 @@ function changeData() {
     } else if (changeYear == 0) {
         $.getJSON('data/new_data/provinceCount.json', function(data) {
             for (let i = 0; i < data.length; ++i) {
-                data[i]._date = deepCopy(data[i].date);
+                data[i]._date = data[i].date;
             }
             //allHeatData = deepCopy(data);
-            presentData = deepCopy(data);
+            presentData = data;
             //getMergeData(data);
             drawHeatMap_heat(presentData);
             setTimeRangeForHeat('2021/01/01', '2021/02/20');
             drawLineBar();
             drawHeat(presentData);
-            allHeatData = deepCopy(data);
+            allHeatData = data;
             getMergeData(data);
         });
         changeYear = 1;
