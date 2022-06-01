@@ -7,6 +7,9 @@ var heat_padding = {
 };
 var i = 0;
 var rootData; //树图数据
+var sum1;
+var sum2;
+var sum3;
 var allHeatData = []; //热力图的所有的数据
 var yRange = []; //y轴的值域 树图叶子节点的坐标
 var yDomain = []; //y轴的定义域 每个省份的名称
@@ -71,18 +74,30 @@ $(document).ready(function() {
         drawHeat(presentData);
     });
     $.getJSON('data/new_data/provinceCount.json', function(data) {
+        var start1 = new Date().getTime();
         for (let i = 0; i < data.length; ++i) {
-            data[i]._date = deepCopy(data[i].date);
+            data[i]._date = data[i].date;
         }
-
+        var end1 = new Date().getTime();
+        sum1 = end1 - start1;
         //allHeatData = deepCopy(data);
-        presentData = deepCopy(data);
+        var start2 = new Date().getTime();
+        presentData = data;
+        var end2 = new Date().getTime();
+        sum2 = end2 - start2;
         //getMergeData(data);
         drawHeatMap_heat(presentData);
         setTimeRangeForHeat('2021/01/01', '2021/02/20');
         drawHeat(presentData);
-        allHeatData = deepCopy(data);
+        var start3 = new Date().getTime();
+        allHeatData = data;
+        var end3 = new Date().getTime();
+        sum3 = end3 - start3;
         getMergeData(data);
+        // console.log(sum1);
+        console.log('sum1:',sum1);//39
+        console.log('sum2:',sum2);//6k
+        console.log('sum3:',sum3);//6k
     });
 });
 
@@ -642,7 +657,7 @@ function copyData(oldData, newData) {
 
 function getMergeData(data) {
     $.getJSON('data/new_data/areaCount.json', function(area) {
-        mergeData = deepCopy(area);
+        mergeData = area;
         for (let i = 0; i < mergeData.length; ++i) {
             let selectedData = [];
             for (let j = 0; j < data.length; ++j) {
@@ -652,7 +667,7 @@ function getMergeData(data) {
             }
             mergeData[i].rectHeight = (yScale(selectedData[selectedData.length - 1].province) - yScale(selectedData[0].province));
             mergeData[i].yStart = yScale(selectedData[0].province);
-            mergeData[i]._date = deepCopy(mergeData[i].date);
+            mergeData[i]._date = mergeData[i].date;
         }
         return mergeData;
     });
@@ -684,10 +699,10 @@ function changeData() {
     if (changeYear == 1) {
         $.getJSON('data/provinceCount.json', function(data) {
             for (let i = 0; i < data.length; ++i) {
-                data[i]._date = deepCopy(data[i].date);
+                data[i]._date = data[i].date;
             }
-            allHeatData = deepCopy(data);
-            presentData = deepCopy(data);
+            allHeatData = data;
+            presentData = data;
             drawLineBar1();
             getMergeData(data);
             drawHeatMap_heat(presentData);
@@ -697,16 +712,16 @@ function changeData() {
     } else if (changeYear == 0) {
         $.getJSON('data/new_data/provinceCount.json', function(data) {
             for (let i = 0; i < data.length; ++i) {
-                data[i]._date = deepCopy(data[i].date);
+                data[i]._date = data[i].date;
             }
             //allHeatData = deepCopy(data);
-            presentData = deepCopy(data);
+            presentData = data;
             //getMergeData(data);
             drawHeatMap_heat(presentData);
             setTimeRangeForHeat('2021/01/01', '2021/02/20');
             drawLineBar();
             drawHeat(presentData);
-            allHeatData = deepCopy(data);
+            allHeatData = data;
             getMergeData(data);
         });
         changeYear = 1;
