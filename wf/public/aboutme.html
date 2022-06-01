@@ -3,12 +3,181 @@
 	<head>
 		<title>历史数据统计</title>
 		<link rel="stylesheet" href="lib/elementui/theme-chalk/index.css" type="text/css">
-
+		<link rel="stylesheet" href="./aboutme.css" type="text/css">
 	</head>
 
 	<body style="background-color: #e5e9f2;">
+		<script src="./slider.js"></script>
+<h1>系统介绍</h1>
+<p>全球分析视图：</p>
+<img class="img_show" src="./imgs/world.jpg" alt="">
+<p> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;使用globe.gl的API生成3D的地球视图，右侧辅以条形图，饼图以辅助</p>
+<p>中国分析视图:</p>
+<img class="img_show" src="./imgs/china.jpg" alt="">
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;使用echart实现中国地图和对应图表</p>
+<p>上海分析视图:</p>
+<img class="img_show" src="./imgs/shanghai1.jpg" alt="">
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;使用python pyechart库实现上海地域可视化</p>
+<p>上海分析图表:</p>
+<img class="img_show" src="./imgs/shanghai2.jpg" alt="">
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;使用较为新颖的总病例和每日新增病例作为横纵坐标分析上海地区感染人数，python plotly库实现</p>
+<p>奥情分析视图:</p>
+<img class="img_show" src="./imgs/yuqing.jpg" alt="">
 
-<div>系统介绍111</div>
+<p>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;使用D3，echart实现四个部分的绘图，分析新闻，舆论，谣言等，横向为时间，纵向为地区</p>
+<br>
+
+<p> &emsp; &emsp; &emsp;&emsp; &emsp;新冠肺炎疫情时时刻刻牵动着世界人民的心,在这场没有硝烟的战争中,我们中间有这么一群人,他们或是抗击一线的紧急驰援的医疗队伍，或是向风暴中心前进的“神兵”，</p>
+<p>&emsp; &emsp; &emsp;&emsp; &emsp;或是社区门口值守的志愿者......他们，是平凡的你和我。他们，又是不平凡的战疫英雄。点点微光，汇聚大爱，他们用自己的责任和担当描绘出世界人民全力抗击新冠肺炎的努力图景。</p>
+<p>	&emsp; &emsp; &emsp;&emsp; &emsp;在全球人民的努力下，中国已经开始全面复工复产，国家的经济秩序正在快速恢复，世界多地的疫情也在逐渐趋于稳定。让我们下定决心、保持耐心、充满信心，</p>
+<p>&emsp; &emsp; &emsp;&emsp; &emsp;用最好的状态来迎接这场“战疫”的全面胜利。</p>
+<div class="swiper-list">
+<script>
+
+let imgArr = [
+{
+	url: '#',
+	imgPath: './imgs/aboutme/1.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/2.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/3.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/4.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/5.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/6.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/7.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/8.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/9.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/10.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/11.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/12.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/13.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/14.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/15.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/16.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/17.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/18.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/19.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/20.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/21.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/22.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/23.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/24.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/25.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/26.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/27.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/28.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/29.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/30.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/31.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/32.jpg'
+},
+{
+	url: '#',
+	imgPath: './imgs/aboutme/33.jpg'
+}
+];
+	// let imgArr = ['i.jpg', 'o.jpg', 'q.jpeg'];
+	// let imgArr = ['i.jpg', 'o.jpg'];
+	// let imgArr = ['i.jpg'];
+	new Swiper({
+		imgArr: imgArr,
+		aniTIme: 1000,
+		intervalTime: 1000,
+		autoplay: true
+	}).init();
+</script>
 
 		<!-- 引入组件库 -->
 		<script type="text/javascript" src="lib/vue.js"></script>
@@ -16,9 +185,7 @@
 		<script type="text/javascript" src="lib/jquery.js"></script>
 		<script type="text/javascript" src="lib/echarts.min.js"></script>
 		<script type="text/javascript" src="lib/axios.min.js"></script>
-		<script type="text/javascript">
-
-		</script>
+		
 	</body>
 
 </html>
