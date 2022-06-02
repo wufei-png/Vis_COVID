@@ -81,31 +81,24 @@ $(document).ready(function() {
         var end1 = new Date().getTime();
         sum1 = end1 - start1;
         //allHeatData = deepCopy(data);
-<<<<<<< HEAD
-        presentData = data;
-=======
         var start2 = new Date().getTime();
         presentData = data;
         var end2 = new Date().getTime();
         sum2 = end2 - start2;
->>>>>>> ad0c1e35fe5a9a04c0d699adc7e7632c97f0491f
+
         //getMergeData(data);
         drawHeatMap_heat(presentData);
         setTimeRangeForHeat('2021/01/01', '2021/02/20');
         drawHeat(presentData);
-<<<<<<< HEAD
-        allHeatData = data;
-=======
         var start3 = new Date().getTime();
         allHeatData = data;
         var end3 = new Date().getTime();
         sum3 = end3 - start3;
->>>>>>> ad0c1e35fe5a9a04c0d699adc7e7632c97f0491f
         getMergeData(data);
         // console.log(sum1);
-        console.log('sum1:',sum1);//39
-        console.log('sum2:',sum2);//6k
-        console.log('sum3:',sum3);//6k
+        console.log('sum1:', sum1); //39
+        console.log('sum2:', sum2); //6k
+        console.log('sum3:', sum3); //6k
     });
 });
 

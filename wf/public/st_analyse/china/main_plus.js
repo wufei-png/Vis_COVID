@@ -145,7 +145,7 @@ var st_china = () => {
                     for (var i = 0; i < tmpSeriesData.length; i++) {
                         if (tmpMoreInfo[i].provinceName === params.name) {
                             var res = params.name + '<br/>';
-                            res += '现存确诊 : ' + params.value + '</br>';
+                            res += '每日新增 : ' + params.value + '</br>';
                             res += '累计确诊 : ' + tmpMoreInfo[i].confirmedCount + '</br>';
                             res += '累计死亡 : ' + tmpMoreInfo[i].deadCount + '</br>';
                             res += '累计治愈 : ' + tmpMoreInfo[i].curedCount + '</br>';
@@ -262,7 +262,7 @@ var st_china = () => {
         var option = {
             backgroundColor: 'rgba(207,176,18,0)',
             title: {
-                text: "现存确诊省份TOP5",
+                text: "每日新增确诊省份TOP5",
                 padding: [20, 0, 0, 40],
                 textStyle: {
                     color: 'white',
